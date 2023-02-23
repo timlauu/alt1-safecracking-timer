@@ -64,6 +64,10 @@ const redraw = () => {
             const secondsLeft = currentValue > max ? 0 : (max - currentValue) / 1000;
             // console.log(currentValue, max, next);
             acc += `
+            <div>
+                <progress id="progress-${idx}" value="${currentValue}" max="${max}"></progress>
+                <label id="progress-label-${idx}">${Math.ceil(secondsLeft)} seconds left</label>
+            </div>
             <li
                 id="location-${idx}"
                 style="display:flex;flex-direction: column;padding-left: 0; margin-left: 0;"
@@ -88,10 +92,6 @@ const redraw = () => {
                     </div>
                 </div>
                 <input id="note-${idx}" class="nisinput" placeholder="Add a note" value="${next.note || ""}" onchange="TEST.changeNoteFor(${idx}, this.value)"></input>
-                <div>
-                    <progress id="progress-${idx}" value="${currentValue}" max="${max}"></progress>
-                    <label id="progress-label-${idx}">${Math.ceil(secondsLeft)} seconds left</label>
-                </div>
             </li>
             `;
             return acc;
